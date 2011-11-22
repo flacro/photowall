@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Varkrs' Lab</title>
+		<link rel=stylesheet href=./css/reset.css />
+		<link rel=stylesheet href=./css/common.css />
+		<link rel=stylesheet href=./css/upload.css />
+	</head>
+	<body>
+		<header>
+			<h1>
+				<span class=var>Var</span><span class=krs>krs'</span> <span class=lab>Lab</span>
+			</h1>
+			<nav>
+				<a href=index.html>Back</a>
+			</nav>
+		</header>
+		<div id=container>
+		<section>
+			<h2>Give your photo to lab with some descriptions...</h2>
+			<article id=error_article></article>
+			<form id=uploadform action=/photowall_tomcat/photowall/photos method=post enctype=multipart/form-data>
+				<article class=upload>
+					<input type=file id=choosefile name=file value=Choose />
+					<div id=dragarea>Or drag your photo here</div>
+					<div id=hover></div>
+				</article>
+			</form>
+			<article class=preview>
+				<article id=img-preview>
+				</article>
+				<a href=# id=reupload class=desc-nav>Re-upload</a>
+				<a href=# id=saveperson class=desc-nav>Save</a>
+				<div id=desc>
+					<h3>Descriptions:</h3>
+					<div class=basic>
+						<form action=/photowall_tomcat/photowall/users id=basicform method=POST>
+							<input type=hidden name=filename id=logohidden />
+							<fieldset>
+								<label for=name>Username:</label>
+								<input type=text class=txt name=username />
+								<span id=username_error></span>
+							</fieldset>
+							<fieldset>
+								<label for=gender>Sex:</label>
+								<input type=radio checked=checked class=radio name=gender value=1 />
+								Boy
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type=radio class=radio name=gender value=0 />
+								Girl
+							</fieldset>
+							<fieldset>
+								<label for=grade>Grade:</label>
+								<select name=grade>
+									<option value=2008 selected=selected>2008</option>
+									<option value=2009>2009</option>
+									<option value=2010>2010</option>
+									<option value=2011>2011</option>
+								</select>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+				<div style='clear:both;'></div>
+			</article>
+			<div style='clear:both;'></div>
+		</section>
+		</div>
+		<footer>
+			Varkrs' Lab @IIS WHU 2011-2011
+		</footer>
+		<script src=./js/jQuery.js></script>
+		<script src=./js/jQuery.form.js></script>
+		<script src=./js/api_config.min.20111107.js></script>
+		<script src=./js/upload.min.20111108.js></script>
+	</body>
+</html>

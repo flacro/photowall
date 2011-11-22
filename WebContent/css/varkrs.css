@@ -1,0 +1,14 @@
+section{-webkit-box-shadow:6px 8px 9px rgba(135, 139, 144, 0.5);-moz-box-shadow:6px 8px 9px rgba(135, 139, 144, 0.5);box-shadow:6px 8px 9px rgba(135, 139, 144, 0.5);margin:10px auto;padding:20px 15px;width:920px;position:relative;}section a.a{-webkit-transform:rotate(4deg);-moz-transform:rotate(4deg);transform:rotate(4deg);}
+section a.b{-webkit-transform:rotate(-4deg);-moz-transform:rotate(-4deg);transform:rotate(-4deg);}
+section a.c{-webkit-transform:rotate(2deg);-moz-transform:rotate(2deg);transform:rotate(2deg);}
+section a.d{-webkit-transform:rotate(-2deg);-moz-transform:rotate(-2deg);transform:rotate(-2deg);}
+section a.e{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);transform:rotate(0deg);}
+section a.f{-webkit-transform:rotate(3deg);-moz-transform:rotate(3deg);transform:rotate(3deg);}
+section a.g{-webkit-transform:rotate(-3deg);-moz-transform:rotate(-3deg);transform:rotate(-3deg);}
+section a.h{-webkit-transform:rotate(1deg);-moz-transform:rotate(1deg);transform:rotate(1deg);}
+section a.i{-webkit-transform:rotate(-1deg);-moz-transform:rotate(-1deg);transform:rotate(-1deg);}
+section a{position:absolute;display:inline-block;height:300px;width:200px;overflow:hidden;padding:6px;border:1px #cdcdcd solid;text-decoration:none;-webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;transition:all 0.3s ease;}section a article{padding:5px;-webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;transition:all 0.3s ease;}section a article img{height:260px;width:190px;border:none;-webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;transition:all 0.3s ease;}
+section a article span{-webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;transition:all 0.3s ease;line-height:30px;color:#555;display:block;text-align:center;}
+section a:hover{-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);transform:rotate(0deg);height:310px;width:210px;z-index:1000;-webkit-box-shadow:4px 4px 8px rgba(135, 139, 144, 0.7);-moz-box-shadow:4px 4px 8px rgba(135, 139, 144, 0.7);box-shadow:4px 4px 8px rgba(135, 139, 144, 0.7);background-color:#eee;}
+section a:hover article{padding:10px;}section a:hover article img{height:260px;width:190px;}
+section a:hover article span{color:black;font-size:1.1em;}

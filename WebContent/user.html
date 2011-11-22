@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Varkrs Lab</title>
+		<link rel=stylesheet href=./css/reset.css />
+		<link rel=stylesheet href=./css/common.css />
+		<link rel=stylesheet href=./css/user.css />
+	</head>
+	<body>
+		<header>
+			<h1>
+				<span class=var>Var</span><span class=krs>krs'</span> <span class=lab>Lab</span>
+			</h1>
+			<nav>
+				<a href=index.html>Back</a>
+			</nav>
+		</header>
+		<section>
+			<article class=img>
+			</article>
+			<article class=desc>
+				<div class=shadow></div>
+				<h2></h2>
+				<div class=tags>
+					<form action=fake id=updatetagform method=post>
+						<input type=hidden name=tag id=updatetagtag />
+						<input type=hidden name=tagid id=updatetagtagid />
+					</form>
+				</div>
+				<span id=addtag>
+					<form action=fake id=addtagform method=post>
+						<input type=hidden name=tag id=addtagtag />
+						<input type=hidden name=userid id=addtaguserid />
+						<span id=addtag-k>
+							<input type=text name=tag-k placeholder=key />
+						</span>
+						<span id=addtag-v>
+							<input type=text name=tag-v placeholder=value />					
+						</span>
+						<a href=>+&nbsp;&nbsp;Add</a>
+					</form>
+					<div></div>
+				</span>
+			</article>
+		</section>
+		<footer>
+			Varkrs' Lab @IIS WHU 2011-2011
+		</footer>
+		<script src=./js/jQuery.js></script>
+		<script src=./js/jQuery.form.js></script>
+		<script src=./js/api_config.min.20111107.js></script>
+		<script src=./js/user.min.20111108.js></script>
+	</body>
+</html>

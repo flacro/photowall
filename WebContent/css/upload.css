@@ -1,0 +1,23 @@
+section{-webkit-box-shadow:3px 4px 7px rgba(135, 139, 144, 0.5);-moz-box-shadow:3px 4px 7px rgba(135, 139, 144, 0.5);box-shadow:3px 4px 7px rgba(135, 139, 144, 0.5);text-align:center;width:930px;padding-top:20px;padding-bottom:10px;margin:0 auto;width:950px;}section h2{line-height:25px;background-color:#063194;color:white;opacity:0.6;}
+section #status{padding:3px;}section #status span{padding:2px 10px;font-weight:bold;font-size:0.9em;}
+section #status span.success{background-color:#cdcdcd;color:blue;}
+section #status span.error{background-color:#e43;color:red;}
+section #status span.ing{background-color:#453;color:green;}
+section .upload{opacity:0.8;margin-top:5px;border:1px solid #ddd;background-color:#fbfbfb;padding:15px;position:relative;}section .upload #dragarea{display:inline-block;width:65%;padding:3em 0;border:1px dashed #ddd;background:#ffffff url(../imgs/dragfile.gif) no-repeat 35px center;color:#999;text-align:center;vertical-align:middle;}
+section .upload .dragover{border-color:#069;box-shadow:inset 2px 2px 4px rgba(0, 0, 0, 0.5);color:#333;}
+section .upload #hover{position:absolute;top:0px;left:0px;width:950px;height:146px;z-index:100;background-color:#ccc;opacity:0.8;display:none;background:url(../imgs/loading.gif) no-repeat center;}
+section .preview{padding:5px;min-height:340px;position:relative;display:none;}section .preview #img-preview{position:absolute;left:220px;top:38px;}section .preview #img-preview img{max-width:300px;max-height:300px;}
+section .preview .desc-nav{opacity:0.8;display:block;float:right;margin-left:5px;font-size:0.92em;text-decoration:none;color:#ffffff;padding:7px 37px;text-align:center;-webkit-border-top-right-radius:2px;-webkit-border-bottom-right-radius:2px;-webkit-border-bottom-left-radius:2px;-webkit-border-top-left-radius:2px;-moz-border-radius-topright:2px;-moz-border-radius-bottomright:2px;-moz-border-radius-bottomleft:2px;-moz-border-radius-topleft:2px;border-top-right-radius:2px;border-bottom-right-radius:2px;border-bottom-left-radius:2px;border-top-left-radius:2px;border:1px solid transparent;background:#4d90fe;background:-webkit-gradient(linear, left bottom, left top, #4787ed, #4787ed);background:-moz-linear-gradient(center bottom, #4787ed 0%, #4787ed 100%);-webkit-transition:all 0.3s ease;-moz-transition:all 0.3s ease;transition:all 0.3s ease;-webkit-text-shadow:1px 2px 3px rgba(67, 8, 7, 0.8);-moz-text-shadow:1px 2px 3px rgba(67, 8, 7, 0.8);text-shadow:1px 2px 3px rgba(67, 8, 7, 0.8);}
+section .preview .desc-nav:hover{opacity:1.0;-webkit-box-shadow:2px 2px 3px rgba(135, 139, 144, 0.4);-moz-box-shadow:2px 2px 3px rgba(135, 139, 144, 0.4);box-shadow:2px 2px 3px rgba(135, 139, 144, 0.4);-webkit-text-shadow:2px 3px 4px #430807;-moz-text-shadow:2px 3px 4px #430807;text-shadow:2px 3px 4px #430807;}
+section .preview #desc{min-width:630px;float:right;text-align:left;clear:both;border-left:2px rgba(145, 178, 239, 0.6) solid;margin-top:2px;display:none;}section .preview #desc h3{clear:both;background-color:#4787ed;}
+section .preview #desc .basic{padding:5px;border-bottom:1px dashed blue;}
+section .preview #desc fieldset{padding:5px;border:none;}section .preview #desc fieldset label{display:inline-block;width:100px;text-align:right;}
+section .preview #desc fieldset .txt{width:300px;height:20px;padding:2px 5px;font-size:1.1em;color:blue;}
+section .preview #desc .tag-i{display:block;padding:5px 5px;}section .preview #desc .tag-i .tag-k{width:80px;height:30px;padding:2px 5px;font-size:1.2em;color:blue;}
+section .preview #desc .tag-i .tag-v{width:400px;height:30px;color:red;padding:2px 5px;font-size:1.2em;}
+section .preview #desc .tag-i .pointer-i{padding:10px;}
+section .preview #desc .tag-i a{display:inline-block;width:30px;line-height:30px;text-indent:-9999px;opacity:0.4;-webkit-transition:all 0.2s ease;-moz-transition:all 0.2s ease;transition:all 0.2s ease;background:url(../imgs/tag-minus.png) repeat-x;}
+section .preview #desc .tag-i a:hover{opacity:0.6;}
+section .preview #desc .no{opacity:0.5;}
+#error_article{display:block;text-align:center;line-height:30px;background-color:#f68991;color:#e5ff08;font-weight:bold;overflow:hidden;height:0px;}
+#username_error{color:red;font-size:0.9em;}

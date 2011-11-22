@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Users" type="org.flacro.po.Users" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/test" />
+				<property name="username" value="flacro" />
+				<property name="password" value="1223334444" />
+			</dataSource>
+
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="org/flacro/po/UsersMapper.xml" />
+		<mapper resource="org/flacro/po/TagsMapper.xml" />
+	</mappers>
+</configuration>
