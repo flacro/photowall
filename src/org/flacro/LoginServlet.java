@@ -27,10 +27,11 @@ public class LoginServlet extends HttpServlet {
 		String username = (String)req.getParameter("username");
 		String password = (String)req.getParameter("password");
 		if(userservice.login(username, password)){
-			req.getSession().setAttribute("username", username);
-			resp.sendRedirect("/v1");
+			req.getSession().setAttribute("password", username);
+			resp.sendRedirect(req.getContextPath()+"/index.html");
 		}else{
-			resp.sendRedirect("/index.html");
+			//resp.sendRedirect("/index.html");
+			resp.sendError(401);
 		}
 	}
 	

@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	private UsersMapper usersmapper;
 
 	public Boolean login(String username, String password) {
-		if (username != null && username.equals("flacro")) {
+		if (password != null && password.equals("varkrs")) {
 			return true;
 		}
 		return false;

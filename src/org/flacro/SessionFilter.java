@@ -27,7 +27,7 @@ public class SessionFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		HttpSession session = request.getSession();
-		Object login = session.getAttribute("username");
+		Object login = session.getAttribute("password");
 		if (login == null) {
 			if(request.getRequestURI().indexOf("login") >0 ){
 				System.out.println("login");

@@ -17,7 +17,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<filter-mapping>
 		<filter-name>SessionFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/photowall/*</url-pattern>
 	</filter-mapping> -->
 
 	<filter>

@@ -11,6 +11,8 @@ import org.restlet.Application;
 import org.restlet.Context;
 import org.restlet.ext.freemarker.ContextTemplateLoader;
 import org.restlet.ext.servlet.ServletAdapter;
+import org.restlet.routing.Filter;
+import org.restlet.routing.Validator;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -33,7 +35,11 @@ public class RestletServlet extends HttpServlet {
 		application.setContext(context);		        
 		adapter = new ServletAdapter(getServletContext());
 		//adapter.setTarget(application);
-		adapter.setNext(application);
+		//adapter.setNext(application);
+		RestletSessionFilter rsf = new RestletSessionFilter();
+		rsf.setContext(context);
+		rsf.setNext(application);
+		adapter.setNext(rsf);
 	}
 
 	@Override
