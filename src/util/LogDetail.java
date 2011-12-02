@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.flacro.resources.PhotosResource;
 
 public class LogDetail {
-	static Logger log = Logger.getLogger(PhotosResource.class);
+	static Logger log = Logger.getLogger(LogDetail.class);
 
 	public static void logexception(Exception e) {
 		String logdetail = "Exception:";
