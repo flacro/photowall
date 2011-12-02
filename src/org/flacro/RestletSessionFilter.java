@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.restlet.Request;
 import org.restlet.Response;
 import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.ext.servlet.internal.ServletCall;
 import org.restlet.ext.xml.DomRepresentation;
 import org.restlet.representation.Representation;
@@ -20,24 +21,23 @@ public class RestletSessionFilter extends Filter {
 		HttpServletRequest hsr = ServletCall.getRequest(request);
 		HttpSession session = hsr.getSession();
 		Object login = session.getAttribute("password");
-		System.out.println(login);
-		System.out.println(hsr.getContextPath());
-		System.out.println(hsr.getRequestURI());
 		if (login == null) {
 			String requri = hsr.getRequestURI();
 			String res = requri.substring(requri.length() - 5, requri.length());
-			if (!res.equals("users")) {
+			String res2 = requri.substring(requri.lastIndexOf("/")-6, requri.lastIndexOf("/"));
+			if (!(res.equals("users") || res2.equals("photos"))) {
 				try {
 					DomRepresentation r = new DomRepresentation(
 							MediaType.TEXT_XML);
 					Document doc = r.getDocument();
 					Element root = doc.createElement("error");
 					root.setAttribute("name", "need authorization");
-					root.setAttribute("response", "401");
+					root.setAttribute("response", "403");
 					doc.appendChild(root);
 					response.setEntity(r);
+					response.setStatus(Status.CLIENT_ERROR_FORBIDDEN);
 				} catch (Exception e) {
-					response.setEntity("401", MediaType.TEXT_ALL);
+					response.setStatus(Status.CLIENT_ERROR_FORBIDDEN);
 				}
 				return STOP;
 			}

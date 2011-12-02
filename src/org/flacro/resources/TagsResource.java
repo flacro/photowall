@@ -3,21 +3,25 @@ package org.flacro.resources;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.flacro.po.Tags;
 import org.flacro.service.UserService;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.ext.xml.DomRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.ServerResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import util.LogDetail;
+
 import com.google.inject.Inject;
 
-public class TagsResource extends BaseResource {
-
+public class TagsResource extends ServerResource {
 	@Inject
 	private UserService userservice;
 
@@ -42,7 +46,8 @@ public class TagsResource extends BaseResource {
 			doc.appendChild(root);
 			return r;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
+			getResponse().setStatus(Status.CLIENT_ERROR_NOT_FOUND);
 			return null;
 		}
 	}
@@ -51,12 +56,10 @@ public class TagsResource extends BaseResource {
 	public Representation create(Representation entity) {
 		DomRepresentation r = null;
 		try {
-			Map map = getRequest().getAttributes();
+			Map<String, Object> map = getRequest().getAttributes();
 			int userid = Integer.parseInt((String) map.get("userid"));
 			Form form = new Form(entity);
-			//String tag = (String) map.get("tag");
 			String tag = form.getFirstValue("tag");
-			System.out.println("tag:"+tag);
 			Tags t = new Tags();
 			t.setTag(tag);
 			t.setUserid(userid);
@@ -72,7 +75,8 @@ public class TagsResource extends BaseResource {
 			doc.appendChild(root);
 			return r;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
+			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 			return null;
 		}
 	}

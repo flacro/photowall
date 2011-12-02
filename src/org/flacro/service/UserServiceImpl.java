@@ -10,6 +10,8 @@ import org.flacro.po.Users;
 import org.flacro.po.UsersMapper;
 import org.mybatis.guice.transactional.Transactional;
 
+import util.LogDetail;
+
 import com.google.inject.Inject;
 
 public class UserServiceImpl implements UserService {
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			return usersmapper.insert(u);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
 			return -1;
 		}
 	}
@@ -43,7 +45,7 @@ public class UserServiceImpl implements UserService {
 			Users record = usersmapper.selectByPrimaryKey(id);
 			return record;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
 			return null;
 		}
 	}
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
 			List<Users> records = usersmapper.selectAll();
 			return records;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
 			return null;
 		}
 	}
@@ -68,7 +70,7 @@ public class UserServiceImpl implements UserService {
 			List<Tags> tlist = tagsmapper.selectByExample(example);
 			return tlist;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
 			return null;
 		}
 
@@ -78,37 +80,40 @@ public class UserServiceImpl implements UserService {
 		try {
 			return tagsmapper.selectByPrimaryKey(tagid);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
 			return null;
 		}
 	}
 
 	@Override
+	@Transactional
 	public int createTag(Tags t) {
 		try {
 			return tagsmapper.insert(t);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
 			return -1;
 		}
 	}
 
 	@Override
+	@Transactional
 	public int updateTag(Tags t) {
 		try {
 			return tagsmapper.updateByPrimaryKey(t);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
 			return -1;
 		}
 	}
 
 	@Override
+	@Transactional
 	public int deleteTag(int id) {
 		try {
 			return tagsmapper.deleteByPrimaryKey(id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
 			return -1;
 		}
 	}

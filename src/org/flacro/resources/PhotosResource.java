@@ -12,15 +12,18 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.ext.servlet.ServletUtils;
 import org.restlet.ext.xml.DomRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
+import org.restlet.resource.ServerResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class PhotosResource extends BaseResource {
-	static Logger log = Logger.getLogger(PhotosResource.class);
+import util.LogDetail;
+
+public class PhotosResource extends ServerResource {
 	@Post
 	public Representation create(Representation entity) {
 		DomRepresentation r = null;
@@ -29,7 +32,6 @@ public class PhotosResource extends BaseResource {
 			ResourceBundle rb = ResourceBundle
 					.getBundle("config");
 			String path = rb.getString("albumpath");
-			System.out.println("config.albumpath"+path);
 			String fileName = "";
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			// Configure the factory here, if desired.
@@ -65,10 +67,9 @@ public class PhotosResource extends BaseResource {
 			root.setAttribute("name", fileName);
 			doc.appendChild(root);
 			return r;
-			// r = new FileRepresentation(new File(path + fileName),
-			// MediaType.IMAGE_JPEG);
 		} catch (Exception e) {
-			log.debug(e);
+			LogDetail.logexception(e);
+			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 			return null;
 		}
 	}

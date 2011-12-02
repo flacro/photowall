@@ -2,22 +2,24 @@ package org.flacro.resources;
 
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.flacro.po.Tags;
 import org.flacro.service.UserService;
 import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.ext.xml.DomRepresentation;
-import org.restlet.representation.EmptyRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Delete;
-import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.ServerResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import util.LogDetail;
+
 import com.google.inject.Inject;
 
-public class TagResource extends BaseResource {
-
+public class TagResource extends ServerResource {
 	@Inject
 	private UserService userservice;
 	
@@ -25,7 +27,7 @@ public class TagResource extends BaseResource {
 	public Representation create(Representation entity) {
 		DomRepresentation r = null;
 		try {
-			Map map = getRequest().getAttributes();
+			Map<String, Object> map = getRequest().getAttributes();
 			int tagid = Integer.parseInt((String) map.get("tagid"));
 			String tag = (String) map.get("tag");
 			Tags t = userservice.getTag(tagid);
@@ -42,7 +44,8 @@ public class TagResource extends BaseResource {
 			doc.appendChild(root);
 			return r;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
+			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 			return null;
 		}
 	}
@@ -51,9 +54,9 @@ public class TagResource extends BaseResource {
 	public Representation delete(Representation entity) {
 		DomRepresentation r = null;
 		try {
-			Map map = getRequest().getAttributes();
+			Map<String,Object> map = getRequest().getAttributes();
 			int tagid = Integer.parseInt((String) map.get("tagid"));
-			int result = userservice.deleteTag(tagid);
+			userservice.deleteTag(tagid);
 
 			// 生成XML表示
 			r = new DomRepresentation(MediaType.TEXT_XML);
@@ -63,7 +66,8 @@ public class TagResource extends BaseResource {
 			doc.appendChild(root);
 			return r;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
+			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 			return null;
 		}
 	}

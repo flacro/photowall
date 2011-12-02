@@ -15,11 +15,13 @@ import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.log4j.Logger;
 import org.flacro.po.Users;
 import org.flacro.service.UserService;
 import org.restlet.data.Encoding;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.ext.fileupload.RepresentationContext;
 import org.restlet.ext.servlet.ServletUtils;
 import org.restlet.ext.xml.DomRepresentation;
@@ -29,15 +31,16 @@ import org.restlet.representation.InputRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.ServerResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.google.inject.Inject;
 
 import util.BuildPhoto;
+import util.LogDetail;
 
-public class UsersResource extends BaseResource {
-
+public class UsersResource extends ServerResource {
 	@Inject
 	private UserService userservice;
 
@@ -60,7 +63,8 @@ public class UsersResource extends BaseResource {
 			doc.appendChild(root);
 			return r;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
+			getResponse().setStatus(Status.CLIENT_ERROR_NOT_FOUND);
 			return null;
 		}
 	}
@@ -120,7 +124,8 @@ public class UsersResource extends BaseResource {
 			doc.appendChild(root);
 			return r;
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogDetail.logexception(e);
+			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 			return null;
 		}
 	}

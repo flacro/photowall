@@ -17,6 +17,7 @@ import org.flacro.po.Users;
 import org.flacro.service.UserService;
 import org.restlet.data.Form;
 import org.restlet.data.MediaType;
+import org.restlet.data.Status;
 import org.restlet.ext.servlet.ServletUtils;
 import org.restlet.ext.xml.DomRepresentation;
 import org.restlet.representation.EmptyRepresentation;
@@ -24,13 +25,15 @@ import org.restlet.representation.FileRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
+import org.restlet.resource.ServerResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import util.LogDetail;
+
 import com.google.inject.Inject;
 
-public class UsersAllResource extends BaseResource {
-	static Logger log = Logger.getLogger(UsersAllResource.class);
+public class UsersAllResource extends ServerResource {
 	@Inject
 	private UserService userservice;
 
@@ -55,9 +58,8 @@ public class UsersAllResource extends BaseResource {
 			doc.appendChild(base);
 			return r;
 		} catch (Exception e) {
-			log.debug(e);
-			System.out.println("exception"+e.getMessage());
-			e.printStackTrace();
+			LogDetail.logexception(e);
+			getResponse().setStatus(Status.CLIENT_ERROR_NOT_FOUND);
 			return null;
 		}
 	}
@@ -68,10 +70,6 @@ public class UsersAllResource extends BaseResource {
 		try {
 			// create users
 			Map map = getRequest().getAttributes();
-			// String username = (String)map.get("username");
-			//String username = "flacro";
-			//String gender = (String) map.get("gender");
-			//String grade = (String) map.get("grade");
 			Form form = new Form(entity);
 			String username = form.getFirstValue("username");
 			String gender = form.getFirstValue("gender");
@@ -97,10 +95,9 @@ public class UsersAllResource extends BaseResource {
 			root.setAttribute("logo", u.getLogo());
 			doc.appendChild(root);
 			return r;
-			// r = new FileRepresentation(new File(path + fileName),
-			// MediaType.IMAGE_JPEG);
 		} catch (Exception e) {
-			log.debug(e);
+			LogDetail.logexception(e);
+			getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST);
 			return null;
 		}
 	}

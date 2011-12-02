@@ -7,18 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.flacro.resources.PhotoResource;
+import org.flacro.resources.PhotosResource;
+import org.flacro.resources.TagResource;
+import org.flacro.resources.TagsResource;
+import org.flacro.resources.UsersAllResource;
+import org.flacro.resources.UsersResource;
 import org.restlet.Application;
 import org.restlet.Context;
-import org.restlet.ext.freemarker.ContextTemplateLoader;
 import org.restlet.ext.servlet.ServletAdapter;
-import org.restlet.routing.Filter;
-import org.restlet.routing.Validator;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 
-import freemarker.template.Configuration;
 
 @Singleton
 public class RestletServlet extends HttpServlet {
@@ -27,12 +29,23 @@ public class RestletServlet extends HttpServlet {
 	private Context context;
 	private ServletAdapter adapter;
 	
-	private Configuration configuration;
 	@Override
 	public void init() throws ServletException {
 		context = new Context();
-		Application application = new MyApplication(injector);
-		application.setContext(context);		        
+		//Application application = new MyApplication(injector);
+		Application application = new Application();
+		application.setContext(context);
+		application.setInboundRoot(new GuiceRouter(injector,context) {
+			@Override
+			protected void attachRoutes() {
+				attach("/users", UsersAllResource.class);
+				attach("/users/{userid}", UsersResource.class);
+				attach("/users/{userid}/tags", TagsResource.class);
+				attach("/users/{userid}/tags/{tagid}", TagResource.class);
+				attach("/photos/{photoname}", PhotoResource.class);
+				attach("/photos", PhotosResource.class);
+			}
+		});
 		adapter = new ServletAdapter(getServletContext());
 		//adapter.setTarget(application);
 		//adapter.setNext(application);

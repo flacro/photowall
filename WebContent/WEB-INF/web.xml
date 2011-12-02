@@ -5,21 +5,6 @@
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
-<!-- 	<filter>
-		<filter-name>SessionFilter</filter-name>
-		<filter-class>org.flacro.SessionFilter</filter-class>
-		<init-param>
-			<param-name>LoginPage</param-name>
-			<param-value>/login</param-value>
-		</init-param>
-	</filter>
-
-
-	<filter-mapping>
-		<filter-name>SessionFilter</filter-name>
-		<url-pattern>/photowall/*</url-pattern>
-	</filter-mapping> -->
-
 	<filter>
 		<filter-name>guiceFilter</filter-name>
 		<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
