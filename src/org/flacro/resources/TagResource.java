@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.flacro.po.Tags;
 import org.flacro.service.UserService;
+import org.restlet.data.Form;
 import org.restlet.data.MediaType;
 import org.restlet.data.Status;
 import org.restlet.ext.xml.DomRepresentation;
@@ -28,8 +29,9 @@ public class TagResource extends ServerResource {
 		DomRepresentation r = null;
 		try {
 			Map<String, Object> map = getRequest().getAttributes();
-			int tagid = Integer.parseInt((String) map.get("tagid"));
-			String tag = (String) map.get("tag");
+			Form form = new Form(entity);
+			int tagid = Integer.parseInt(form.getFirstValue("tagid"));
+			String tag = form.getFirstValue("tag");
 			Tags t = userservice.getTag(tagid);
 			t.setTag(tag);
 			userservice.updateTag(t);
