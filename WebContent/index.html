@@ -6,14 +6,16 @@
 		<link rel=stylesheet href=./css/reset.css />
 		<link rel=stylesheet href=./css/common.css />
 		<link rel=stylesheet href=./css/varkrs.css />
+		<link rel="shortcut icon" href="favicon.ico" />
 	</head>
 	<body>
+		<div id=needslogin></div>
 		<header>
 			<h1>
 				<span class=var>Var</span><span class=krs>krs'</span> <span class=lab>Lab</span>
 			</h1>
 			<nav>
-				<a href=/photowall_tomcat/upload.html>上传</a>
+				<a id=upload-btn>上传</a>
 			</nav>
 		</header>
 		<section>
@@ -24,6 +26,20 @@
 		<script src=./js/jQuery.js></script>
 		<script src=./js/jQuery.scrollLoading.min.js></script>
 		<script src=./js/api_config.min.20111107.js></script>
-		<script src=./js/varkrs.min.20111108.js></script>
+		<script src=./js/varkrs.20111114.js></script>
+		<script src=./js/jQuery.cookie.js></script>
+		<script src=./js/must.js></script>
+		<script>
+			$(function(){
+				$("#upload-btn").click(function(){
+					if(zpw.isLogin()){
+						window.location.href="/photowall_tomcat/upload.html";
+					}else{
+						$("#needslogin").load("login.html");
+					}
+					return false;
+				});
+			});
+		</script>
 	</body>
 </html>

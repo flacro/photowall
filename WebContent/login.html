@@ -1,0 +1,94 @@
+<meta charset=utf-8>
+<style>
+a#login-btn {
+	opacity: 0.8;
+	display: inline-block;
+	font-size: 0.92em;
+	text-decoration: none;
+	color: #ffffff;
+	padding: 7px 37px;
+	text-align: center;
+	-webkit-border-top-right-radius: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	-webkit-border-top-left-radius: 2px;
+	-moz-border-radius-topright: 2px;
+	-moz-border-radius-bottomright: 2px;
+	-moz-border-radius-bottomleft: 2px;
+	-moz-border-radius-topleft: 2px;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+	border-top-left-radius: 2px;
+	border: 1px solid transparent;
+	background: #4D90FE;
+	background: -webkit-gradient(linear, left bottom, left top, #4d90fe, #4787ed);
+	background: -moz-linear-gradient(center bottom, #4d90fe 0%, #4787ed 100%);
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	-webkit-text-shadow: 1px 2px 3px rgba(67, 8, 7, 0.8);
+	-moz-text-shadow: 1px 2px 3px rgba(67, 8, 7, 0.8);
+	text-shadow: 1px 2px 3px rgba(67, 8, 7, 0.8);
+}
+
+a#login-btn:hover {
+	opacity: 1.0;
+	-webkit-box-shadow: 2px 2px 3px rgba(135, 139, 144, 0.4);
+	-moz-box-shadow: 2px 2px 3px rgba(135, 139, 144, 0.4);
+	box-shadow: 2px 2px 3px rgba(135, 139, 144, 0.4);
+	-webkit-text-shadow: 2px 3px 4px #430807;
+	-moz-text-shadow: 2px 3px 4px #430807;
+	text-shadow: 2px 3px 4px #430807;
+	cursor: pointer;
+}
+
+#login-wrapper {
+	z-index: 300;
+	background: rgba(0, 0, 0, 0.8);
+	height: 100%;
+}
+fieldset {
+	border: none;
+	padding: 10px 0px;
+}
+</style>
+<div id=login-wrapper
+	style='position: absolute; top: 0px; left: 0px; width: 100%;'>
+	<div id=login-content style='margin: 100px auto; width: 400px;'>
+		<h3
+			style='color: white; font-size: 2em; padding: 10px 0px 10px 30px; border-bottom: 1px solid #FFF;'>请验证</h3>
+		<fieldset>
+			<label style='color: white; text-align:right; display: inline-block; width: 100px;'>密码:</label>
+			<input type=password name=password id=passwordinput
+				style='height: 25px; width: 200px;' />
+		</fieldset>
+		<fieldset id=errorf style="color:red;">
+			<label
+				style='display: inline-block; width: 100px; text-indent: -9999px;'>Error</label>
+		账号或密码错误
+		</fieldset>
+		<fieldset>
+			<label
+				style='display: inline-block; width: 100px; text-indent: -9999px;'>登陆</label>
+			<a id=login-btn>登陆</a>
+		</fieldset>
+	</div>
+</div>
+<script>
+	$(function(){
+		$("#errorf").hide();
+		$("#login-btn").click(function(){
+			var password = $("#passwordinput").val();
+			$.post("login",{username:"username",password:password},function(data){
+				if(data == "0"){
+					$("#errorf").show();
+				}else{
+					$.cookie("user","login");
+					window.location.href="index.html";
+				}
+			});
+			return false;
+		});
+	});
+</script>

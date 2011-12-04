@@ -1,5 +1,6 @@
 package org.flacro;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -26,13 +27,15 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String username = (String)req.getParameter("username");
 		String password = (String)req.getParameter("password");
+		BufferedWriter writer = new BufferedWriter(resp.getWriter());
 		if(userservice.login(username, password)){
 			req.getSession().setAttribute("password", username);
-			resp.sendRedirect(req.getContextPath()+"/index.html");
+			writer.write("1");
 		}else{
-			//resp.sendRedirect("/index.html");
-			resp.sendError(401);
+			writer.write("0");
 		}
+		writer.flush();
+		writer.close();
 	}
 	
 	
