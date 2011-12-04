@@ -11,8 +11,8 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
 				<property name="url" value="jdbc:mysql://localhost:3306/test" />
-				<property name="username" value="flacro" />
-				<property name="password" value="1223334444" />
+				<property name="username" value="root" />
+				<property name="password" value="liuda" />
 			</dataSource>
 
 		</environment>
